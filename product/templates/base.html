@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" >
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <title>Dairy Products |  {% block title %}{% endblock title %} </title>
+    <style>
+     .footer .social {
+        text-align: center;
+        padding-bottom: 25px;
+        color: #4b4c4d;
+        margin-top: 20px;
+     }
+
+     .footer .social a {
+      font-size: 24px;
+      color: white;
+      border: 1px solid #ccc;
+      width: 40px;
+      height: 40px;
+      line-height: 38px;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      margin: 0 8px;
+      opacity: 0.75;
+     }
+
+     .footer .social a:hover {
+      opacity: 0.9;
+      color: skyblue;
+     }
+
+     .footer ul {
+      margin-top: 0px;
+      padding: 0;
+      list-style: none;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      text-align: center;
+     }
+
+     .footer ul a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+     }
+
+     .footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+     }
+
+     .footer ul li a:hover {
+      opacity: 1;
+      color: skyblue;
+     }
+
+     .footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+     }
+     .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+    }
+  
+    .dropdown-menu {
+      display: none;
+    }
+  
+    .dropdown-menu li {
+      padding: 5px;
+    }
+    .d-flex {
+      margin-right:20px;
+    }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"> <img src="{% static '/img/misty moo.png'%} " alt="" height="80px" width="80px" style="border-radius:3%; margin-top: 0px;" ><img src="{% static '/img/aji.png'%} " alt="" height="50px" width="250px" style="margin-left: -50px; margin-top: 20px;"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/" style="margin-left: -70px;">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Products
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'category' 'ML' %}">Milk</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'CR' %}">Curd</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'CH' %}">Cheese</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'BU' %}">Butter</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'GH' %}">Ghee</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'PR' %}">Paneer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'YT' %}">Yoghurt Shake</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'MS' %}">MilkShake</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'LS' %}">Lassi</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'BM' %}">Butter Milk</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'FM' %}">Flavoured Milk</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'CM' %}">Cream</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'IC' %}">Ice Creams</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'KL' %}">Kulfi</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'DS' %}">Desserts</a></li>                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'about' %}">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'contact' %}">Contact us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#" onclick="confirmClick()" >Don't Click</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" action="/search">
+              <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown mx-2">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{request.user|capfirst}}</a>
+              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+                <li>
+                  <form action="{% url 'logout'  %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="dropdown-item">Logout</button>
+                  </form>
+              </li>
+              </ul>
+            </li>
+            <li class="nav_item mx-2">
+              <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{% if totalitem > 0 %} {{totalitem}} {% endif %} </span>  Cart</a>
+            </li>
+            <li class="nav_item mx-2">
+              <a href="{% url 'showwishlist' %}" class="nav-link text-white"><span class="badge bg-success">{% if wishitem > 0 %} {{wishitem}} {% endif %} </span>   <i class="fa fa-heart"></i></a>
+            </li>
+            {% else %}
+            <li class="nav_item mx-2">
+              <a href="{% url 'login' %}" class="nav-link text-white position" style="margin-left: 1000px;">Login</a>
+            </li>
+            <li class="nav_item mx-2">
+              <a href="{% url 'customerregistration' %}" class="nav-link text-white">Register</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+      {%block banner-slider %} {% endblock banner-slider %}
+      {% block information %}{% endblock information %}
+      {% block about %}{% endblock about %}
+      {%block main-content %} {% endblock main-content %}
+      {%block payment-gateway %} {% endblock payment-gateway %}
+      
+        <footer class="container-fluid  bg-dark text-center p-2 mt-5">
+        <section class="footer" >
+          <div class="social">
+              <a href=""><i class="fab fa-instagram"></i></a>
+              <a href=""><i class="fab fa-youtube"></i></a>
+              <a href=""><i class="fab fa-twitter"></i></a>
+              <a href=""><i class="fab fa-facebook"></i></a>
+              <a href="https://github.com/Ajiartist2003" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+          <ul class="list">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="">Services</a>
+              </li>
+              <li>
+                <a href="/about">About</a>
+              </li>
+              <li>
+                <a href="">Terms</a>
+              </li>
+              <li>
+                <a href="">Privacy Policy</a>
+              </li>
+          </ul>
+          <p class="copyright">
+            Copyright : 2024  ||  Developed by Aji Kumar
+
+          </p>
+        </section>
+      </footer>
+
+      <script>
+        function confirmClick() {
+            // Display a confirmation dialog
+            var result = confirm("Are you sure you want to click?");
+            
+            // If the user clicks OK, proceed with the navigation
+            if (result) {
+                window.location.href = "{% url 'fun' %}";
+            }
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'js/all.min.js' %}"></script>
+
+    <script src="{% static 'js/myscript.js' %}"></script>
+</body>
+</html> 

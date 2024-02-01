@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact{% endblock title %}
+
+{%block main-content %}
+<style>
+    body {
+        font-family: Outfit;
+        background: linear-gradient(#a4f0f9,#fff7f9);
+    }
+    .contact-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; 
+    }
+    .contact-left {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+    .contact-left-title h2{
+        font-weight: 600;
+        color: #ea5d05;
+        font-size: 40px;
+    }
+    .contact-left-title hr{
+        border: none;
+        width: 120px;
+        height: 7px;
+        background-color: #ea5d05;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .contact-inputs {
+        width: 400px;
+        height: 50px;
+        border: none;
+        outline: none;
+        padding-left: 25px;
+        font-weight: 500;
+        color: #666;
+        border-radius: 50px;
+    }
+    .contact-left textarea{
+        height: 140px;
+        padding-top: 15px;
+        border-radius: 20px;
+    }
+    .contact-inputs:focus{
+        border: 2px solid #ff994f;
+    }
+    .contact-inputs::placeholder{
+        color: #a9a9a9;
+    }
+    .contact-left button{
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 16px;
+        gap: 10px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        padding: 15px 30px;
+        background: linear-gradient(270deg, #ff994f,#fa6d86);
+    }
+    .contact-left button img{
+        height: 15px;
+    }
+    @media (max-width:800px){
+        .contact-inputs {
+            width: 80vh;
+        }
+        .contact-right {
+            display: none;
+        }
+    }
+
+    .showBot {
+        position: absolute;
+        right: 30px;
+        /*Right and bottom are set to position the chat bot window in the right-corner of the screen*/
+        bottom: 5px;
+        padding: 10px 40px 10px 37px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        background-color: dodgerblue;
+        color: #f8f8f8;
+        box-shadow: 5px 5px 3px #aaaaaa;
+        cursor: pointer;
+      }
+  
+      .container {
+        position: absolute;
+        right: 30px;
+        /*Right and bottom are set to position the chat bot window in the right-corner of the screen*/
+        bottom: 60px;
+        width: 400px;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 10px 10px 5px #aaaaaa;
+        background: linear-gradient(#a4f0f9,#fff7f9);
+        border: 2px solid rgb(247, 82, 11);
+        border-radius: 20px;
+        z-index: 10px;
+      }
+  
+      .header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+  
+      .header h1 {
+        color: #ea5d05;             
+        padding: 10px;
+        font-family: Outfit;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+  
+      .header img {
+        width: 80px;
+        padding: 10px;
+      }
+  
+      .body {
+        display: flex;
+        flex: 1;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.7);
+        margin-top: auto;
+        overflow-y: scroll;
+        flex-direction: column-reverse;
+        scroll-behavior: smooth;
+        padding: 20px 10px;
+        border-radius: 15px 15px 0px 0px;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+      }
+  
+      .body::-webkit-scrollbar {
+        display: none;
+      }
+  
+      .botTyping-bg {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 0px 0px 10px 20px;
+      }
+  
+      .botTyping {
+        margin-right: 60%;
+        color: #fff;
+      }
+  
+      .bot_message {
+        background-color: dodgerblue;
+        padding: 10px;
+        color: white;
+        width: fit-content;
+        border-top-left-radius: 0px !important;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+  
+      .user_message {
+        margin-left: auto;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        width: fit-content;
+        border-top-right-radius: 0px !important;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+  
+      .bot-profile {
+        width: 13%;
+        padding-right: 5px;
+      }
+  
+      .user-profile {
+        width: 12%;
+        padding-left: 5px;
+      }
+  
+      .bot-message-block {
+        display: flex;
+        align-items: baseline;
+      }
+  
+      .user-message-block {
+        display: flex;
+        align-items: baseline;
+        flex-direction: row-reverse;
+      }
+  
+      .footer1 {
+        display: flex;
+      }
+  
+      .footer1 input {
+        flex: 1;
+        height: 40px;
+        border: none;
+        border-radius: 0px 0px 0px 5px;
+        outline: none;
+        padding-left: 5px;
+        font-size: 16px;
+      }
+  
+      .footer1 button {
+        width: 100px;
+        font-size: 18px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        background: linear-gradient(#04def6,#ace3fa);
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+  
+      .footer1 button:hover {
+        background: rgb(119,126,247);
+        background: linear-gradient(90deg, rgba(119,126,247,1) 0%, rgba(250,147,124,1) 45%, rgba(242,250,107,1) 100%);
+      }
+  
+      .footer1 button:disabled {
+        background-color: #aaaaaa;
+      }
+  
+      .showBot:hover {
+        background-color: blue;
+      }
+  
+      .hideBot {
+        padding: 10px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background-color:#a4f0f9;
+        color: rgb(241, 15, 15);
+        cursor: pointer;
+      }
+  
+      .aapi-popup-dialog {
+        position: absolute;
+        right: 30px;
+        bottom: 95px;
+        font-size: 18px;
+        padding: 10px 10px 10px 10px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        background-color: dodgerblue;
+        color: #f8f8f8;
+      }
+  
+      .attention {
+        position: absolute;
+        right: 25px;
+        bottom: 145px;
+        padding: 10px;
+        border-radius: 100%;
+        background-color: red;
+      }
+  
+      .down-triangle {
+        width: 0;
+        height: 0;
+        position: absolute;
+        right: 68px;
+        bottom: 75px;
+        border: 20px solid transparent;
+        border-top: 20px solid dodgerblue;
+        border-bottom: 0;
+      }
+  
+      .hidden {
+        display: none;
+      }
+</style>
+
+<div class="contact-container">
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+        <div class="contact-left-title">
+            <h2>Get in Touch</h2>
+            <hr>
+        </div>
+        <input type="hidden" name="access_key" value="1db0422c-1508-47f7-9b6e-a46c0b1ed4f0">
+        <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+        <input type="text" name="email" placeholder="Your Email" class="contact-inputs" required>
+        <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+        <button type="submit">Submit <img src="/static/img/arrow_icon.png" alt=""></button>
+    </form>
+    <div class="contact-right">
+        <img src="/static/img/contact.png" alt="" height="300px" width="300px">
+    </div>
+</div>
+
+<div id="botWindow" class="container fade-in-transition hidden">
+    <div class="header">
+      <div class="header">
+        <h1 style="font-size: 30px;" > Misty Moo Ai</h1>
+        <img src="/static/img/misty moo.png" height="80px" width="80px">
+      </div>
+      <button class="hideBot fade-out-transition" type="button" onclick="hideBotFun()">X</button>
+    </div>
+    <div class="body">
+      <p class="bot_message">Hi! How can I help you ? </p>
+    </div>
+    <!-- Bot Typing animation -->
+    <div class="botTyping-bg">
+      <div class="botTyping hidden">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <span>Misty Moo is typing</span>
+      </div>
+    </div>
+    {%csrf_token%}
+    <form id="myForm" value="query">
+      <div class="footer1">
+        <input id="query" type="text" onkeyup="checkText()" placeholder="Ask..." name="query">
+        <button class="submit_btn" type="submit"> Send</button>
+      </div>
+    </form>
+  </div>
+  <!-- Here is the Aapi dialog message box to catch user's attention -->
+  <div class="popup-dialog fade-in-transition hidden">
+    <div class="aapi-popup-dialog">
+      <span>Hi there, I'm Misty Moo. <br>How may I help you today?</span>
+    </div>
+    <div class="attention"></div>
+    <div class="down-triangle"></div>
+  </div>
+  <button id="showBotbtn" class="showBot fade-in-transition" type="button" onclick="showBotFun()">Chat</button>
+
+
+  <!-- ajax string -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    "use strict";
+    const fadeIn_fadeOut_transition_speed = 300;
+    const messages = [];
+    let popupDialog = document.querySelector(".popup-dialog")
+
+    // onload function will run when page is rendered
+    window.onload = function () {
+      // ChatBot dialog popup function
+      setTimeout(() => {
+        // ChatBot dialog will only popup if user haven't used the chatBot.
+        if (messages.length === 0) {
+          popupDialog.classList.remove("hidden");
+          popupDialog.style.opacity = 0;
+          setTimeout(()=>{
+            popupDialog.style.opacity = 1;
+          }, fadeIn_fadeOut_transition_speed)
+        }
+      }, 5000);
+    }
+
+    // updates the chats
+    function updateChatText() {
+      let html = "";
+      let botHtmlTag = '<div class = "bot-message-block floatup-msg"><img class = "bot-profile" src="{% static "/img/bot.png" %}"><p class= bot_message>';
+      let userHtmlTag = '<div class = "user-message-block floatup-msg"><img class = "user-profile" src="{% static "/img/user.png" %}"><p class= user_message>';
+      messages.slice().reverse().forEach(function (item, index) {
+        if (item.name === "Bot") {
+          if (item.message.includes("https://") == true){
+            html += `<div class = "bot-message-block floatup-msg"><img class = "bot-profile" src="{% static "/img/bot.png" %}"><a class= bot_message href="${item.message}">${item.message}</a></div>`
+          }
+          else{
+            html += botHtmlTag + item.message + '</p></div>'
+          }
+        } else {
+          html += userHtmlTag + item.message + '</p></div>'
+        }
+      });
+      const chatMessage = document.querySelector(".body");
+      chatMessage.innerHTML = html;
+    }
+
+    // To give chat like feel
+    function scrollToBottom() {
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function showBotFun() {
+      // Initialize Variables
+      const chatBotWindow = document.getElementById("botWindow");
+
+      //Main Logic to show chatBot
+      chatBotWindow.style.opacity = 0;
+      chatBotWindow.style.transform = `translateY(10%)`;
+      document.querySelector(".container").classList.remove("hidden");
+
+      //Pausing the flow of the code for 0.3 secs
+      setTimeout(() => {
+        chatBotWindow.style.transform = `translateY(0%)`;
+        chatBotWindow.style.opacity = 1;
+      }, fadeIn_fadeOut_transition_speed);
+
+      //Main Logic to hide Chat button
+      const showBot = document.getElementById("showBotbtn");
+      showBot.style.opacity = 0;
+      popupDialog.style.opacity = 0;
+
+      //Pausing the flow of the code for 0.3 secs
+      setTimeout(() => {
+        document.querySelector(".showBot").classList.add("hidden");
+        popupDialog.classList.add("hidden");
+      }, fadeIn_fadeOut_transition_speed);
+
+      if (messages.length === 0) {
+        let msg2 = { name: "Bot", message: "Hello! How can I help you?" };
+        messages.push(msg2);
+        updateChatText();
+        scrollToBottom();
+      }
+    }
+
+    function hideBotFun() {
+      // Initialize Variables
+      const showBot = document.getElementById("showBotbtn");
+
+      //Main Logic to show Chat button
+      showBot.style.opacity = 0;
+
+      //Pausing the flow of the code for 0.3 secs
+      document.querySelector(".showBot").classList.remove("hidden");
+      setTimeout(() => {
+        showBot.style.opacity = 1;
+      }, fadeIn_fadeOut_transition_speed);
+
+      //Main Logic to hide chat bot
+      const chatBotWindow = document.getElementById("botWindow");
+      chatBotWindow.style.transform = `translateY(11%)`;
+      chatBotWindow.style.opacity = 0;
+
+      //Pausing the flow of the code for 0.3 secs
+      setTimeout(() => {
+        document.querySelector(".container").classList.add("hidden");
+      }, fadeIn_fadeOut_transition_speed);
+
+
+    }
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    // Disable the send button if there is no text in query field
+
+    const regex = /[A-Za-z0-9]/
+    let submit_btn = document.querySelector(".submit_btn");
+    function checkText() {
+      const inp_string = document.querySelector("#query").value
+      if (regex.test(inp_string) === false) {
+        submit_btn.disabled = true
+      } else {
+        submit_btn.disabled = false
+      }
+    }
+
+    // Here is the main code which Posts and gets responses
+    const form1 = document.getElementById("myForm");
+    const botTyping = document.querySelector(".botTyping")
+    const txtUserInp = document.querySelector("#query");
+    form1.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (txtUserInp.value == "") {
+        return
+      }
+      let msg1 = { name: "user1", message: txtUserInp.value }
+      messages.push(msg1);
+      updateChatText();
+      submit_btn.disabled = true;
+      botTyping.classList.remove("hidden");
+      
+      // converting use input to lowerCase
+      let lowerCaseInput = $('#query').val().toLowerCase();
+      
+      // Create the data object with the lowercase input
+      let requestData = { query: lowerCaseInput };
+
+      $.ajax({
+        method: "GET",
+        url: "{#}",
+        headers: {
+          "Content-type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRFToken": csrftoken,
+        },
+        data: requestData
+      })
+        // This steps should be done if the input is successfully submitted to the bot and get response
+        .done(function (response) {
+          const botRes = JSON.stringify(response);
+          const obj = JSON.parse(botRes);
+          let msg2 = { name: "Bot", message: obj.Bot };
+          messages.push(msg2);
+          updateChatText();
+          scrollToBottom();
+          submit_btn.disabled = false;
+          botTyping.classList.add("hidden");
+          txtUserInp.value = "";
+        })
+        // if any errors they will be thrown into the console
+        .fail(function (response) {
+          let msg2 = { name: "Bot", messages: "Internal server error, Please reload the page." }
+          messages.push(msg2);
+          updateChatText();
+          scrollToBottom();
+          submit_btn.disabled = false;
+          botTyping.classList.add("hidden");
+          txtUserInp.value = "";
+        })
+    })
+
+  </script>
+
+
+{% endblock main-content %}

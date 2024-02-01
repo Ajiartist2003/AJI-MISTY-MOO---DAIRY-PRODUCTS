@@ -1,0 +1,264 @@
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block main-content %}
+
+
+<style media="screen">
+    *,
+    *:before,
+    *:after{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background: linear-gradient(#a4f0f9,#fff7f9);
+    }
+    .background{
+      width: 430px;
+      height: 520px;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      left: 50%;
+      top: 50%;
+    }
+    form{
+      height: 460px;
+      width: 450px;
+      background-color: rgba(255,255,255,0.13);
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(8,7,16,0.6);
+      padding: 50px 35px;
+      margin-left: 100px;
+    }
+    form *{
+      font-family: 'Poppins',sans-serif;
+      color: #06c9ff;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+    }
+    form h3{
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 42px;
+      text-align: center;
+    }
+    
+    label{
+      display: block;
+      margin-top: 0px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    input{
+      display: block;
+      height: 40px;
+      width: 100%;
+      background-color: rgba(11, 1, 1, 0.05);
+      border-radius: 3px;
+      padding: 0 10px;
+      margin-top: 2px;
+      font-size: 14px;
+      font-weight: 300;
+      color: black;
+    }
+    input:focus {
+      border: 2px solid aqua;
+    }
+    input:hover {
+      border: 2px solid aqua;
+    }
+    ::placeholder{
+      color: #e5e5e5;
+    }
+    button{
+      margin-top: 14px;
+      width: 100%;
+      background-color: aqua;
+      color: #080710;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: rgb(119,126,247);
+      background: linear-gradient(90deg, rgba(119,126,247,1) 0%, rgba(250,147,124,1) 45%, rgba(242,250,107,1) 100%);
+    }
+    #vv{
+        margin-top:20px;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    /*bootstrap-utilities*/
+    .sr-only {
+      border: 0 !important;
+      clip: rect(1px, 1px, 1px, 1px) !important;
+     /* 1 */
+      clip-path: inset(50%) !important;
+     /* 2 */
+      -webkit-clip-path: inset(50%) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      white-space: nowrap !important;
+     /* 3 */
+      width: 1px !important;
+    }
+    :root {
+      --label-background-color: #000;
+      --label-pseudo-background-color: #fff;
+      --size: 5rem;
+      --translateX: 0;
+      --color-day: #3a8dca;
+      --color-night: #1b1d2a;
+      --color-sun: #fed62e;
+      --color-moon: #c4c9d2;
+    }
+    .switch {
+      display: flex;
+      overflow: hidden;
+      margin-top: 50px;
+      margin-left: 1200px;
+    
+    }
+    .switch__input:checked + .switch__label {
+      --label-background-color: var(--color-night);
+    }
+    .switch__input:checked + .switch__label:before {
+      --label-pseudo-background-color: var(--color-moon);
+      --translateX: 100%;
+    }
+    .switch__label {
+      --label-background-color: var(--color-day);
+      background-color: var(--label-background-color);
+      box-shadow: 0 4px 5.5px 0 rgba(0, 0, 0, .25) inset, 0 0.6px 8px 0 rgba(0, 0, 0, .25) inset, 0 2.5px 2.5px 0 rgba(255, 255, 255, .95), 0 -2px 2.5px 0 rgba(0, 0, 0, 0.25);
+      border-radius: 9em;
+      display: inline-flex;
+      padding: 1rem;
+      transition: background-color 300ms ease;
+    }
+    .switch__label:before, .switch__label:after {
+      border-radius: 50%;
+      content: "";
+      display: inline-flex;
+      height: var(--size);
+      position: relative;
+      pointer-events: none;
+      transition: background-color 300ms ease, transform 300ms ease;
+      width: var(--size);
+    }
+    .switch__label:before {
+      --label-pseudo-background-color: var(--color-sun);
+      --translateX: 0;
+      background-color: var(--label-pseudo-background-color);
+      box-shadow: 2px 2.5px 2.5px 0 rgba(254, 255, 255, .6) inset, 0 -3px 2.5px 0 rgba(0, 0, 0, .40) inset, 2.5px 4.2px 5px 0 rgba(0, 0, 0, .25), 0px 2.5px 2.5px 0 rgba(0, 0, 0, .25), 0 0 0 1rem rgba(255, 255, 255, .1), 0 0 0 2rem rgba(255, 255, 255, .1), 0 0 0 3rem rgba(255, 255, 255, .1);
+      transform: translateX(var(--translateX));
+      z-index: 1;
+    }
+    .switch__label:after {
+      opacity: 0;
+    }
+    /* STYLE */
+    .switch__input:checked + .switch__label {
+      background-position: 15% 50%;
+    }
+    .switch__input:checked + .switch__label:before {
+      background-image: url('data:image/svg+xml,<svg viewBox="0 0 83 82" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="34.9108" cy="17.5783" r="5.13325" fill="%239DA5B5"/><circle cx="25.5501" cy="46.2639" r="12.6822" fill="%239DA5B5"/><circle cx="56.9536" cy="43.8484" r="7.85086" fill="%239DA5B5"/></svg>');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .switch .switch__label {
+      background-image: url('data:image/svg+xml,<svg width="473" height="136" viewBox="0 0 473 136" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M118.246 45.5724C117.824 45.9933 117.306 46.219 116.698 46.2434C117.306 46.2739 117.817 46.4935 118.246 46.9144C118.668 47.3352 118.879 47.8354 118.879 48.421C118.879 47.8354 119.09 47.3352 119.512 46.9144C119.934 46.4935 120.446 46.2678 121.053 46.2434C120.446 46.219 119.934 45.9933 119.512 45.5724C119.09 45.1515 118.879 44.6514 118.879 44.0658C118.879 44.6514 118.668 45.1515 118.246 45.5724Z" fill="white"/><path d="M124.989 83.5408C124.707 83.8214 124.362 83.9718 123.957 83.9881C124.362 84.0084 124.703 84.1548 124.989 84.4354C125.27 84.716 125.411 85.0494 125.411 85.4398C125.411 85.0494 125.551 84.716 125.833 84.4354C126.114 84.1548 126.455 84.0044 126.86 83.9881C126.455 83.9718 126.114 83.8214 125.833 83.5408C125.551 83.2602 125.411 82.9268 125.411 82.5364C125.411 82.9268 125.27 83.2602 124.989 83.5408Z" fill="white"/><path d="M85.984 35.0177C84.8584 36.14 83.4771 36.7418 81.8569 36.8069C83.4771 36.8882 84.8414 37.4738 85.984 38.5961C87.1096 39.7185 87.6724 41.0523 87.6724 42.6138C87.6724 41.0523 88.2351 39.7185 89.3607 38.5961C90.4863 37.4738 91.8506 36.872 93.4707 36.8069C91.8506 36.7418 90.4863 36.14 89.3607 35.0177C88.2351 33.8953 87.6724 32.5615 87.6724 31C87.6724 32.5615 87.1096 33.8953 85.984 35.0177Z" fill="white"/><path d="M163.651 82.9249C162.525 84.0472 161.144 84.6491 159.524 84.7141C161.144 84.7955 162.508 85.381 163.651 86.5034C164.777 87.6257 165.339 88.9595 165.339 90.521C165.339 88.9595 165.902 87.6257 167.028 86.5034C168.153 85.381 169.518 84.7792 171.138 84.7141C169.518 84.6491 168.153 84.0472 167.028 82.9249C165.902 81.8025 165.339 80.4687 165.339 78.9072C165.339 80.4687 164.777 81.8025 163.651 82.9249Z" fill="white"/><path d="M57.0635 54.7848C56.5008 55.346 55.8101 55.6469 55 55.6795C55.8101 55.7201 56.4922 56.0129 57.0635 56.5741C57.6263 57.1352 57.9077 57.8021 57.9077 58.5829C57.9077 57.8021 58.1891 57.1352 58.7519 56.5741C59.3147 56.0129 59.9968 55.712 60.8069 55.6795C59.9968 55.6469 59.3147 55.346 58.7519 54.7848C58.1891 54.2237 57.9077 53.5568 57.9077 52.776C57.9077 53.5568 57.6263 54.2237 57.0635 54.7848Z" fill="white"/><path d="M178.283 54.7848C177.72 55.346 177.029 55.6469 176.219 55.6795C177.029 55.7201 177.711 56.0129 178.283 56.5741C178.845 57.1352 179.127 57.8021 179.127 58.5829C179.127 57.8021 179.408 57.1352 179.971 56.5741C180.534 56.0129 181.216 55.712 182.026 55.6795C181.216 55.6469 180.534 55.346 179.971 54.7848C179.408 54.2237 179.127 53.5568 179.127 52.776C179.127 53.5568 178.845 54.2237 178.283 54.7848Z" fill="white"/><path d="M87.2437 76.282C86.9623 76.5626 86.6169 76.713 86.2119 76.7293C86.6169 76.7496 86.958 76.896 87.2437 77.1766C87.5251 77.4572 87.6658 77.7907 87.6658 78.181C87.6658 77.7907 87.8065 77.4572 88.0879 77.1766C88.3693 76.896 88.7103 76.7456 89.1154 76.7293C88.7103 76.713 88.3693 76.5626 88.0879 76.282C87.8065 76.0014 87.6658 75.668 87.6658 75.2776C87.6658 75.668 87.5251 76.0014 87.2437 76.282Z" fill="white"/><path d="M153.297 60.3133C153.016 60.5938 152.67 60.7443 152.265 60.7606C152.67 60.7809 153.011 60.9273 153.297 61.2079C153.579 61.4885 153.719 61.8219 153.719 62.2123C153.719 61.8219 153.86 61.4885 154.141 61.2079C154.423 60.9273 154.764 60.7768 155.169 60.7606C154.764 60.7443 154.423 60.5938 154.141 60.3133C153.86 60.0327 153.719 59.6992 153.719 59.3088C153.719 59.6992 153.579 60.0327 153.297 60.3133Z" fill="white"/><path d="M70.3389 87.6724C69.9168 88.0933 69.3988 88.319 68.7913 88.3434C69.3988 88.3739 69.9104 88.5934 70.3389 89.0143C70.761 89.4352 70.972 89.9354 70.972 90.5209C70.972 89.9354 71.1831 89.4352 71.6052 89.0143C72.0273 88.5934 72.5389 88.3678 73.1464 88.3434C72.5389 88.319 72.0273 88.0933 71.6052 87.6724C71.1831 87.2515 70.972 86.7513 70.972 86.1658C70.972 86.7513 70.761 87.2515 70.3389 87.6724Z" fill="white"/><path opacity="0.6" fill-rule="evenodd" clip-rule="evenodd" d="M447.804 59.2934C456.963 53.6621 463.071 43.548 463.071 32.0073C463.071 14.3301 448.741 -5.49167e-05 431.064 -5.49167e-05C413.386 -5.49167e-05 399.056 14.3301 399.056 32.0073C399.056 41.1568 402.895 49.4097 409.051 55.243C408.223 56.0971 407.457 57.0105 406.758 57.9764C403.721 56.431 400.282 55.5598 396.641 55.5598C385.689 55.5598 376.577 63.4386 374.665 73.8373C370.788 69.3038 365.027 66.4303 358.594 66.4303C348.911 66.4303 340.748 72.942 338.246 81.8254C335.293 79.7362 331.687 78.5085 327.795 78.5085C324.167 78.5085 320.788 79.5747 317.955 81.4108C314.239 78.82 309.72 77.3007 304.846 77.3007C292.172 77.3007 281.897 87.5751 281.897 100.249C281.897 112.924 292.172 123.198 304.846 123.198C312.302 123.198 318.927 119.642 323.119 114.134C324.611 114.531 326.178 114.743 327.795 114.743C335.402 114.743 341.915 110.054 344.6 103.408C345.584 104.279 346.65 105.059 347.785 105.735C347.745 106.317 347.724 106.904 347.724 107.496C347.724 121.171 358.809 132.257 372.484 132.257C386.159 132.257 397.245 121.171 397.245 107.496C397.245 104.973 396.867 102.538 396.166 100.244C396.324 100.248 396.482 100.249 396.641 100.249C403.137 100.249 408.985 97.4774 413.068 93.0518C417.005 95.6906 421.741 97.2298 426.836 97.2298C440.511 97.2298 451.597 86.1442 451.597 72.4694C451.597 67.627 450.206 63.1092 447.804 59.2934ZM258.949 118.367C271.623 118.367 281.897 108.092 281.897 95.418C281.897 82.7438 271.623 72.4694 258.949 72.4694C246.274 72.4694 236 82.7438 236 95.418C236 108.092 246.274 118.367 258.949 118.367Z" fill="%23F3FDFF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M458.788 61.6351C466.868 55.8252 472.13 46.3424 472.13 35.6308C472.13 17.9536 457.8 3.62342 440.122 3.62342C422.445 3.62342 408.115 17.9536 408.115 35.6308C408.115 46.3424 413.377 55.8252 421.457 61.6351C419.042 64.4028 417.234 67.7125 416.237 71.3577C412.699 69.0074 408.453 67.6381 403.888 67.6381C392.78 67.6381 383.566 75.7427 381.835 86.361C381.738 86.3599 381.64 86.3594 381.543 86.3594C380.25 86.3594 378.98 86.4584 377.741 86.6494C374.007 80.6727 367.369 76.6968 359.802 76.6968C350.837 76.6968 343.175 82.2787 340.103 90.1568C337.036 87.7765 333.185 86.3594 329.003 86.3594C324.418 86.3594 320.231 88.0621 317.04 90.8697C312.924 86.9522 307.354 84.5476 301.223 84.5476C294.871 84.5476 289.122 87.128 284.967 91.2977C281.219 83.7197 273.41 78.5085 264.384 78.5085C251.71 78.5085 241.435 88.783 241.435 101.457C241.435 114.131 251.71 124.406 264.384 124.406C270.736 124.406 276.485 121.825 280.64 117.656C284.387 125.234 292.196 130.445 301.223 130.445C309.139 130.445 316.118 126.437 320.243 120.34C322.839 121.776 325.826 122.594 329.003 122.594C335.949 122.594 341.983 118.684 345.023 112.945C348.439 116.286 352.982 118.478 358.029 118.897C361.29 128.762 370.585 135.88 381.543 135.88C394.855 135.88 405.714 125.374 406.28 112.201C414.941 111.279 422.124 105.408 424.947 97.4708C429.138 100.726 434.404 102.665 440.122 102.665C453.797 102.665 464.883 91.5794 464.883 77.9046C464.883 71.6769 462.584 65.9863 458.788 61.6351Z" fill="%23F3FDFF"/></svg>');
+      background-position: 90% 1%;
+      background-repeat: no-repeat;
+      background-size: 250%;
+      transition: background-color 300ms ease, background-position 300ms ease;
+    }
+    /*TEMP*/
+    :root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    body.dark-mode {
+      background: #000;
+    }
+    body.dark-mode form {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+    
+    body.dark-mode form label,
+    body.dark-mode form input,
+    body.dark-mode form button,
+    body.dark-mode form #hj a{
+      color: #fff;
+    }
+    
+    body.dark-mode form ::placeholder {
+      color: #555;
+    }
+    #hj {
+      text-align: center;
+      padding-top: 30px;
+    }
+    .img {
+      margin-top: 200px;
+      margin-left: -50px;
+    }
+</style>
+<div class="img">
+  <img src="/static/img/login.png" alt="" height="350px" width="600px">
+</div>
+<form method="post">
+    <h3>Login</h3>
+    {% csrf_token %} 
+{% for fm in form %}
+      {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+      <br>
+    {% endfor %}
+    
+    <small> <a href="{% url 'password_reset' %}" style="text-decoration: none;">Forgot Password</a></small>
+    <button type="submit" onclick="playCowMoo()">Log In</button>
+    <div class="text-center text-primary fw-bold" id="hj"> <small>New User? <a href="{% url 'customerregistration' %}" class="text-danger" style="text-decoration: none;">Create an Account</a></small></div>
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+          <p class="alert alert-danger my-3">{{error}}</p>
+      {% endfor %}
+    {% endif %}
+</form>
+<div class="switch">
+    <input type="checkbox" id="switchInput" class="switch__input sr-only" />
+    <label for="switchInput" class="switch__label">
+      <span class="sr-only">switch</span>    
+    </label>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const switchInput = document.getElementById('switchInput');
+  
+      switchInput.addEventListener('change', function () {
+        document.body.classList.toggle('dark-mode', switchInput.checked);
+        const form = document.querySelector('form');
+        if (form) {
+          form.classList.toggle('dark-mode', switchInput.checked);
+        }
+      });
+    });
+  </script>
+{% endblock main-content %}

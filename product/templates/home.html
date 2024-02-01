@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static "/img/banner1.jpg" %}" class="d-block w-100" alt="..." height="900px">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static "/img/banner2.png" %}" class="d-block w-100" alt="..." height="900px">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static "/img/banner3.png" %}" class="d-block w-100" alt="..." height="900px">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static "/img/banner4.jpg" %}" class="d-block w-100" alt="..." height="900px">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static "/img/banner5.png" %}" class="d-block w-100" alt="..." height="900px">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden"></span>
+    </button>
+</div>
+{% endblock banner-slider %}
+
+{% block information %}
+<style>
+  pre {
+      white-space: pre-wrap;
+  }
+  h1 {
+      font-family: 'Georgia', serif;
+      color: black; 
+      font-size: 32px;
+      margin-top: -20px;   
+  }
+  h4 {
+    font-family: 'Georgia', serif;
+    line-height: 40px;
+    padding-bottom: 0px;
+    margin-bottom: 40px;
+    margin-top: -10px;
+  }
+.goodnesssec a {
+  text-decoration: none;
+}
+
+.mlkpro {
+  color: #636362;
+  font-size: 22px;
+  line-height: 70px;
+  margin-bottom: 25px;
+  width: 43%;
+  margin: 0 auto;
+  text-align: center;
+}
+#g {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+  
+ }
+
+</style>
+<div class="container-fluid">
+  <div class="row bg-info text-center p-5 text-white border-bottom shadow">
+    <h1>Products</h1>
+    <small class="fs-5"><pre>
+      <h1>Welcome to Aji Misty Moo - A Dairy Delight!</h1>
+      <h4>
+      At Aji Misty Moo, we take pride in bringing you a delightful array of farm-fresh dairy products, carefully crafted 
+      with love and passion. Our commitment to quality, purity, and a touch of magic sets us apart as your go-to source 
+      for all things dairy. Discover Our Dairy Symphony: 🥛 Milk, 🧀 Cheese & Paneer, 🍦 Ice Creams & Desserts, 
+      🍨 Yogurt Shake & Lassi, 🧈 Butter & Ghee, 🥤 Milkshakes, 🍰 Cream.
+      </h4>
+      </pre>
+    </small>
+  </div>
+</div>
+{% endblock information %}
+
+
+{% block main-content %}
+{% if request.user.is_authenticated %}
+<div class="container" id="nn">
+  <h2 class="text-center" style="color: black; margin-top: 100px;">Dairy Products</h2>
+  <br><br>
+  <div class="row">
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk smbg">
+          <a href="{% url 'category' 'ML' %}" id="sss" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description"  data-bs-content="Milk is a nutrient-rich liquid, sourced from mammals, that provides essential proteins, calcium, vitamins, and minerals crucial for bone health, muscle growth, and overall well-being.">
+              <div class="goodnessseccont text-center">
+                  <img src="{% static '/img/milky.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+                  <p class="mlkpro">Milk</p>
+              </div>
+          </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk curdbgpro">
+        <a href="{% url 'category' 'CR' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Curd, also known as yogurt, is a dairy product created by fermenting milk with beneficial bacteria, resulting in a creamy and tangy product rich in probiotics, proteins, and essential nutrients.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/curd.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Curd</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'CH' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Cheese is a dairy product made from curdled milk, typically through the coagulation of milk proteins, followed by a fermentation process, resulting in a diverse range of delicious and textured varieties enjoyed worldwide.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/cheese.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Cheese</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'BU' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Butter is a dairy product made from churning cream, separating the butterfat from the buttermilk.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/butter.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Butter</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'GH' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Ghee is a clarified form of butter, where the milk solids and water are removed through a heating and straining process, leaving behind a golden, pure fat.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/ghee.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Ghee</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'PR' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Paneer is a fresh, non-melting cheese popular in Indian cuisine, made by curdling milk and pressing to achieve a versatile, mild-textured product.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/paneer.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Paneer</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'YT' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="
+        A yogurt shake is a refreshing beverage made by blending yogurt with fruits, milk, or other ingredients, creating a creamy and flavorful drink with a smooth consistency.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/yoghurt.jpeg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Yoghurt Shake</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'MS' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="A milkshake is a creamy and indulgent beverage made by blending milk with ice cream, flavored syrups, or fruits, resulting in a sweet and refreshing treat.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/milkshake.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Milk Shake</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'LS' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Lassi is a traditional South Asian drink made by blending yogurt with water, spices, and sometimes fruits.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/lassi.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Lassi</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'BM' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Buttermilk is a fermented dairy drink, often the byproduct of churning butter, with a tangy flavor used in cooking, baking, or enjoyed on its own as a refreshing drink.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/bmilk.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Butter Milk</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'FM' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Flavored milk is a beverage where various flavors, such as chocolate, strawberry, or vanilla, are added to regular milk, providing a tasty and enjoyable twist to the classic dairy drink.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/flmilk.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Flavoured Milk</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'CM' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Cream is a high-fat component of milk, separated through a centrifugal process, and commonly used in cooking and baking to add richness and texture to dishes.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/cream.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Cream</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'IC' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="
+        Ice cream is a frozen dessert made by churning and freezing a mixture of cream, milk, sugar, and flavorings, resulting in a deliciously creamy treat with a wide variety of flavors and textures.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/icecream.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Ice Creams</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'KL' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="
+        Kulfi is a frozen dairy dessert originating from South Asia, made by simmering sweetened and flavored milk until reduced, then freezing it in molds to create a dense and creamy treat with unique Indian flavors.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/kulfi.png' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Kulfi</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+      <div class="goodnesssec buttermilk buttermilk">
+        <a href="{% url 'category' 'DS' %}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top" data-bs-title="Description" data-bs-content="Desserts encompass a wide range of sweet, indulgent treats, often served at the end of a meal, and can include cakes, pies, cookies, ice cream, puddings, and various confections designed to satisfy sweet cravings.">
+          <div class="goodnessseccont text-center">
+            <img src="{% static '/img/gulabjamun.jpg' %}" alt="" height="300px" width="350px" class="img-responsive center-block">
+            <p class="mlkpro">Desserts</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+      const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+  });
+</script>
+
+{% endblock main-content %}
